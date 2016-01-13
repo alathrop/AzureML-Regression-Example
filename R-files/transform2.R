@@ -30,7 +30,7 @@ cols <- c("dteday", "mnth", "hr", "holiday",
           "registered", "cnt")
 BikeShare <- BikeShare[, cols]
 
-## Normalize the numeric perdictors 
+## Normalize the numeric predictors 
 cols <- c("temp", "hum", "windspeed")
 BikeShare[, cols] <- scale(BikeShare[, cols])  
 
