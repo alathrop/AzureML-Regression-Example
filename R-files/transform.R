@@ -1,3 +1,5 @@
+# RStudio version
+
 ## This file contains the code for the transformation 
 ## of the raw bike rental data. it is intended to run in an 
 ## Azure ML Execute R Script module. By changing
@@ -13,7 +15,7 @@ if(Azure){
   BikeShare <- maml.mapInputPort(1)
   BikeShare$dteday <- set.asPOSIXct(BikeShare)
 }else{
-  BikeShare <- read.csv("C:\\Users\\Steve\\GIT\\Quantia-Analytics\\AzureML-Regression-Example\\R files\\BikeSharing.csv", 
+  BikeShare <- read.csv(".\\R-files\\BikeSharing.csv", 
                         sep = ",", 
                         header = T, stringsAsFactors = F )
   
