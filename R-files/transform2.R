@@ -37,15 +37,26 @@ BikeShare[, cols] <- scale(BikeShare[, cols])
 ## Take the log of response variables. First we 
 ## must ensure there are no zero values. The difference 
 ## between 0 and 1 is inconsequential. 
-cols <- c("casual", "registered", "cnt")
-BikeShare <- var.log(BikeShare, cols)
+# cols <- c("casual", "registered", "cnt")
+# BikeShare <- var.log(BikeShare, cols)
 
 ## Create a new variable to indicate workday
 BikeShare$isWorking <- ifelse(BikeShare$workingday & 
                                 !BikeShare$holiday, 1, 0)  
 
 ## Add a column of the count of months which could 
-## help model trend. 
+## help model trend.
+
+month.count <- function(inFrame){
+  Dteday <- strftime(inFrame$dteday, 
+                     format = "%Y-%m-%dT%H:%M:%S")
+  yearCount <- as.numeric(unlist(lapply(strsplit(
+    Dteday, "-"), 
+    function(x){x[1]}))) - 2011 
+  inFrame$monthCount <- 12 * yearCount + inFrame$mnth
+  inFrame
+}
+
 BikeShare <- month.count(BikeShare)
 
 ## Create an ordered factor for the day of the week 
@@ -75,3 +86,5 @@ BikeShare$xformHr <- ifelse(BikeShare$hr > 4,
 
 ## Output the transformed data frame if in Azure ML.
 if(Azure) maml.mapOutputPort('BikeShare')
+
+summary(BikeShare)
