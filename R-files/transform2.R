@@ -1,3 +1,5 @@
+# RStudio version
+
 ## This file contains the code for the transformation 
 ## of the raw bike rental data. it is intended to run in an 
 ## Azure ML Execute R Script module. By changing
@@ -12,7 +14,7 @@ if(Azure){
   BikeShare$dteday <- as.POSIXct(as.integer(BikeShare$dteday), 
                                  origin = "1970-01-01")
 }else{
-  BikeShare <- read.csv("BikeSharing.csv", sep = ",", 
+  BikeShare <- read.csv("./R-files/BikeSharing.csv", sep = ",", 
                       header = T, stringsAsFactors = F )
   BikeShare$dteday <- as.POSIXct(strptime(
                          paste(BikeShare$dteday, " ", 
