@@ -57,6 +57,17 @@ lapply(times, function(times){
 
 ## Convert dayWeek back to an ordered factor so the plot is in
 ## time order.
+
+fact.conv <- function(inVec){
+  ## Function gives the day variable meaningful 
+  ## level names.
+  outVec <- as.factor(inVec)
+  levels(outVec) <- c("Monday", "Tuesday", "Wednesday", 
+                      "Thursday", "Friday", "Saturday", 
+                      "Sunday")
+  outVec
+}
+
 BikeShare$dayWeek <- fact.conv(BikeShare$dayWeek)
 
 ## This code gives a first look at the predictor values vs the demand for bikes.
