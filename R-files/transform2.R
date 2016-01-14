@@ -88,3 +88,5 @@ BikeShare$xformHr <- ifelse(BikeShare$hr > 4,
 if(Azure) maml.mapOutputPort('BikeShare')
 
 summary(BikeShare)
+
+write.csv(BikeShare, file=".\\R-files\\output\\BikeSharingTransform.csv")
